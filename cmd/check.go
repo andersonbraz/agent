@@ -16,7 +16,13 @@ var checkCmd = &cobra.Command{
 This command check enviroment variables for your MongoDB service.
 *************************************************************************`,
 	Run: func(cmd *cobra.Command, args []string) {
-		listAll()
+		service, err := cmd.Flags().GetBool("mongodb")
+		if err != nil {
+			return err
+		}
+		if service {
+			checkMongoDB()
+		}
 	},
 }
 
@@ -29,11 +35,7 @@ func listAll() {
 }
 
 func checkMongoDB() {
-	for _, e := range os.Environ() {
-		pair := strings.SplitN(e, "=", 2)
-		fmt.Println("Key:", pair[0])
-		fmt.Println("Value:", pair[1])
-	}
+	fmt.Println("function monogodb")
 }
 
 func init() {
