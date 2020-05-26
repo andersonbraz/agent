@@ -2,25 +2,26 @@ package cmd
 
 import (
 	"fmt"
+	"os"
+	"strings"
 
 	"github.com/spf13/cobra"
 )
-
-var service string
 
 // checkCmd represents the check command
 var checkCmd = &cobra.Command{
 	Use:   "check",
 	Short: "agent check --service <<name>>",
-	Long:  `This command check enviroment variables for your MongoDB service.`,
+	Long: `*****************************************************************
+			This command check enviroment variables for your MongoDB service.
+			*****************************************************************`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("check called")
 
-		//for _, e := range os.Environ() {
-		//	pair := strings.SplitN(e, "=", 2)
-		//	fmt.Println("Key:", pair[0])
-		//	fmt.Println("Value:", pair[1])
-		//}
+		for _, e := range os.Environ() {
+			pair := strings.SplitN(e, "=", 2)
+			fmt.Println("Key:", pair[0])
+			fmt.Println("Value:", pair[1])
+		}
 
 	},
 }
@@ -37,7 +38,5 @@ func init() {
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
 	//checkCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
-
-	searchCmd.Flags().StringVarP(&service, "service", "s", "", "service to use enviroment variables")
 
 }

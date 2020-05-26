@@ -20,23 +20,7 @@ var rootCmd = &cobra.Command{
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	//	Run: func(cmd *cobra.Command, args []string) { },
-	Run: func(cmd *cobra.Command, args []string) {
-		input, err := ioutil.ReadAll(os.Stdin)
-		if err != nil {
-			return
-		}
-		service := strings.TrimSpace(string(input))
-		err = getService(cmd, service)
-		if err != nil {
-			cmd.PrintErrln("Error:", err)
-		}
-	}
 
-}
-
-func getService(cmd *cobra.Command, service string) error {
-	fmt.Println(service)
-	return nil
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
