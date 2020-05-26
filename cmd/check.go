@@ -38,7 +38,7 @@ func checkMongoDB() {
 
 func init() {
 
-	checkCmd.Flags().StringP("mongodb", "m", "", "Check enviroment variables for MongoDB")
+	checkCmd.Flags().StriBoolPngP("mongodb", "m", true, "Check enviroment variables for MongoDB")
 	rootCmd.AddCommand(checkCmd)
 
 	// Here you will define your flags and configuration settings.
