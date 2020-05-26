@@ -16,17 +16,29 @@ var checkCmd = &cobra.Command{
 This command check enviroment variables for your MongoDB service.
 *************************************************************************`,
 	Run: func(cmd *cobra.Command, args []string) {
-
-		for _, e := range os.Environ() {
-			pair := strings.SplitN(e, "=", 2)
-			fmt.Println("Key:", pair[0])
-			fmt.Println("Value:", pair[1])
-		}
-
+		listAll()
 	},
 }
 
+func listAll() {
+	for _, e := range os.Environ() {
+		pair := strings.SplitN(e, "=", 2)
+		fmt.Println("Key:", pair[0])
+		fmt.Println("Value:", pair[1])
+	}
+}
+
+func checkMongoDB() {
+	for _, e := range os.Environ() {
+		pair := strings.SplitN(e, "=", 2)
+		fmt.Println("Key:", pair[0])
+		fmt.Println("Value:", pair[1])
+	}
+}
+
 func init() {
+
+	checkCmd.Flags().StringP("mongodb", "m", "", "Check enviroment variables for MongoDB")
 	rootCmd.AddCommand(checkCmd)
 
 	// Here you will define your flags and configuration settings.
