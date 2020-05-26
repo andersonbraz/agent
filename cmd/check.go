@@ -13,8 +13,8 @@ var checkCmd = &cobra.Command{
 	Use:   "check",
 	Short: "agent check --service <<name>>",
 	Long: `*****************************************************************
-			This command check enviroment variables for your MongoDB service.
-			*****************************************************************`,
+	This command check enviroment variables for your MongoDB service.
+	*****************************************************************`,
 	Run: func(cmd *cobra.Command, args []string) {
 
 		for _, e := range os.Environ() {
