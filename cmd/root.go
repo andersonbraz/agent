@@ -15,7 +15,7 @@ var cfgFile string
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "agent",
-	Short: "Agent Check",
+	Short: "Check Agent",
 	Long:  `Execute Command: agent check --mongodb`,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
