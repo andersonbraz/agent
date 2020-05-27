@@ -29,25 +29,25 @@ func listAll() {
 	}
 }
 
-// MONGODB_DATABASE: 'mongodb://mongodb-server:27017'
-// MONGODB_SOURCE: 'dbinfo'
-// MONGODB_USER: 'appuser'
-// MONGODB_PASSWORD: 'Mko0Zaq1'
+// MONGODB_ADDRESS: << driver://hostname:port >>
+// MONGODB_DATABASE: << database >>
+// MONGODB_USER: << username >>
+// MONGODB_PASSWORD: << password >>
 
 func checkMongoDB() {
 
 	for _, e := range viper.AllKeys() {
 		keyvar := strings.ToUpper(e)
-		resp := getEnv(keyvar)
+		resp := checkEnv(keyvar)
 		fmt.Println(resp)
 	}
 
 }
 
-func getEnv(key string) string {
+func checkEnv(key string) string {
 	value, exists := os.LookupEnv(key)
 	if !exists {
-		value = "not found"
+		os.Setenv(key, value)
 	}
 	return value
 }

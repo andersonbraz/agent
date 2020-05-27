@@ -1,4 +1,4 @@
-MONGODB_DATABASE: 'mongodb://mongodb-server:27017'
-MONGODB_SOURCE: 'dbinfo'
+MONGODB_ADDRESS: 'mongodb://mongodb-server:27017'
+MONGODB_DATABASE: 'dbinfo'
 MONGODB_USER: 'appuser'
 MONGODB_PASSWORD: 'Mko0Zaq1'
