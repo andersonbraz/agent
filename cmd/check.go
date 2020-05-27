@@ -41,6 +41,7 @@ func checkEnv(key string, value string) string {
 	checkIn, exists := os.LookupEnv(key)
 	if !exists {
 		os.Setenv(key, value)
+		viper.AutomaticEnv()
 		fmt.Println(key, value)
 	}
 	return checkIn
