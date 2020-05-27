@@ -21,14 +21,6 @@ This command check enviroment variables for your MongoDB service.
 	},
 }
 
-func listAll() {
-	for _, e := range os.Environ() {
-		pair := strings.SplitN(e, "=", 2)
-		fmt.Println("Key:", pair[0])
-		fmt.Println("Value:", pair[1])
-	}
-}
-
 // MONGODB_ADDRESS: << driver://hostname:port >>
 // MONGODB_DATABASE: << database >>
 // MONGODB_USER: << username >>
@@ -48,6 +40,7 @@ func checkEnv(key string) string {
 	value, exists := os.LookupEnv(key)
 	if !exists {
 		os.Setenv(key, value)
+		fmt.Println(key, value)
 	}
 	return value
 }
