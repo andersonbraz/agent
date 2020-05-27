@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 )
 
 // checkCmd represents the check command
@@ -16,13 +17,7 @@ var checkCmd = &cobra.Command{
 This command check enviroment variables for your MongoDB service.
 *************************************************************************`,
 	Run: func(cmd *cobra.Command, args []string) {
-		service, err := cmd.Flags().GetBool("mongodb")
-		if err != nil {
-			return err
-		}
-		if service {
-			checkMongoDB()
-		}
+		checkMongoDB()
 	},
 }
 
@@ -34,13 +29,32 @@ func listAll() {
 	}
 }
 
+// MONGODB_DATABASE: 'mongodb://mongodb-server:27017'
+// MONGODB_SOURCE: 'dbinfo'
+// MONGODB_USER: 'appuser'
+// MONGODB_PASSWORD: 'Mko0Zaq1'
+
 func checkMongoDB() {
-	fmt.Println("function monogodb")
+
+	for _, e := range viper.AllKeys() {
+		keyvar := strings.ToUpper(e)
+		resp := getEnv(keyvar)
+		fmt.Println(resp)
+	}
+
+}
+
+func getEnv(key string) string {
+	value, exists := os.LookupEnv(key)
+	if !exists {
+		value = "not found"
+	}
+	return value
 }
 
 func init() {
 
-	checkCmd.Flags().StriBoolPngP("mongodb", "m", true, "Check enviroment variables for MongoDB")
+	checkCmd.Flags().BoolP("mongodb", "m", true, "Check enviroment variables for MongoDB")
 	rootCmd.AddCommand(checkCmd)
 
 	// Here you will define your flags and configuration settings.
