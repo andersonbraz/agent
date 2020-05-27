@@ -29,20 +29,21 @@ This command check enviroment variables for your MongoDB service.
 func checkMongoDB() {
 
 	for _, e := range viper.AllKeys() {
-		keyvar := strings.ToUpper(e)
-		resp := checkEnv(keyvar)
+		keyVar := strings.ToUpper(e)
+		valVar := viper.GetString(e)
+		resp := checkEnv(keyVar, valVar)
 		fmt.Println(resp)
 	}
 
 }
 
-func checkEnv(key string) string {
-	value, exists := os.LookupEnv(key)
+func checkEnv(key string, value string) string {
+	checkIn, exists := os.LookupEnv(key)
 	if !exists {
 		os.Setenv(key, value)
 		fmt.Println(key, value)
 	}
-	return value
+	return checkIn
 }
 
 func init() {
